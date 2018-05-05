@@ -5,3 +5,4 @@ TEAM 3
 Nicolas vd Walt 
 Marius Liebenberg
 Drikus Mostert
+Ernes Smit
