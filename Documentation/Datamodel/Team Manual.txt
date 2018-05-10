@@ -1,0 +1,14 @@
+Programs Needed:
+*Anaconda IDE
+- Tensorflow (JupyterLab)
+- Numpy - Array Managment
+- MathLib - Data Visualization
+- Scikit Learn - Data Preprocessing
+- Pandas - Handeling CSV files/Input
+
+Tutorials
+https://www.tensorflow.org/install/
+https://www.tensorflow.org/tutorials/wide_and_deep
+
+If you need any assistants, feel free to contact me 
+- Nicolas
