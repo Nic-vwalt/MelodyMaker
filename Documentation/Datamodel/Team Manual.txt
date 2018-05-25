@@ -1,6 +1,7 @@
 Programs Needed:
 *Anaconda IDE
 - Tensorflow (JupyterLab)
+- Magenta - Midi library for Tensorflow
 - Numpy - Array Managment
 - MathPlotLib - Data Visualization
 - Scikit Learn - Data Preprocessing
@@ -9,7 +10,11 @@ Programs Needed:
 Tutorials
 https://www.tensorflow.org/install/
 https://www.tensorflow.org/tutorials/wide_and_deep
+https://towardsdatascience.com/how-to-generate-music-using-a-lstm-neural-network-in-keras-68786834d4c5
 https://www.youtube.com/watch?v=ujS0Viuv5kg - Using semitones to improve melodies
+https://magenta.tensorflow.org/datasets/nsynth
+https://github.com/tensorflow/magenta
+https://github.com/jukedeck/nottingham-dataset
 
 If you need any assistants, feel free to contact me 
 - Nicolas
