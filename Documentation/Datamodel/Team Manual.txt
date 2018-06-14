@@ -15,6 +15,8 @@ https://www.youtube.com/watch?v=ujS0Viuv5kg - Using semitones to improve melodie
 https://magenta.tensorflow.org/datasets/nsynth
 https://github.com/tensorflow/magenta
 https://github.com/jukedeck/nottingham-dataset
+https://github.com/llSourcell/How_to_generate_music_in_tensorflow_LIVE
+https://www.youtube.com/watch?v=pg9apmwf7og
 
 If you need any assistants, feel free to contact me 
 - Nicolas
