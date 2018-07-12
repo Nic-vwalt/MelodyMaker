@@ -1,0 +1,20 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package day2_1;
+
+/**
+ *
+ * @author user
+ */
+public class Interface_Class2 extends Interface_Class{
+
+    @Override
+    public void make_process() {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   System.out.println("This is the second car");
+    }
+    
+}
