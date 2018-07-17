@@ -41,7 +41,7 @@ def Moods():
 
 varGenre = Genres()
 varMood = Moods()
-print(varGenre)
-print(varMood)
+print(varGenre + " Selected as genre")
+print(varMood + " Selected as mood")
 input()
 
