@@ -1,47 +1,73 @@
+import SQLConnection as sql
 
 ##genre array with temp values 
-arrGenres = ["jazz","blues","classic","rock","metal"]
+arrGenres = ["Jazz","Blues","Classic","Rock","Metal"]
 
 ##mood array with temp values
-arrMoods = ["Happy","Sad","Excited","Aggressive","humorous"]
+arrMoods = ["Happy","Sad","Excited","Aggressive","Humorous","None"]
 
-temp = ["Help"]
-
-##function that handles genre input
+            
+##Class to get genres
 def Genres():
-    ##Prompts users for Genre input
-    tempGenre = input("Provide a genre <Type ""Help"" for the list of genres>")
-##If user requires help
-    if tempGenre.lower() == "help":
-        for x in arrGenres:
-            print(x)
-            
-        tempGenre = Genres()
-    elif tempGenre.lower() in [x.lower() for x in arrGenres]:
-        return tempGenre
-    else:
-        print("The genre is not contained in the genre list")
-        tempGenre = Genres()
+	tempGenre = input("Select Genre <>")
+	checkGen = False
 
+	for i, x in enumerate(arrGenres):
+		##if int(tempGenre) == i+1:
+			##varGenre = x
+			##checkGen = True
+			##return varGenre
+		if tempGenre.lower() in [x.lower() for x in arrGenres]:
+			checkGen = True
+			return tempGenre
+
+	if checkGen == False:
+		print("Please select a genre")
+      sql.Connect();
+		varGenre = Genres()
+      cur = db.cursor()
+
+
+      cur.execute("SELECT * FROM tblCSV.path WHERE GENREID = VarGenre")
+
+      for row in cur.fetchall():
+      arrSelected[] = row
+
+db.close()
+
+##Class to get moods
 def Moods():
-    
-    ##Prompts users for Genre input
-    tempMood = input("Provide a mood <Type ""Help"" for the list of moods>")
-##If user requires help
-    if tempMood.lower() == "help":
-        for x in temp:
-            print(x)
-            
-        tempMood = Moods()
-    elif tempMood.lower() in [x.lower() for x in arrMoods] :
-        return tempMood
-    else:
-        print("The genre is not contained in the genre list")
-        tempMood = Moods()
+	tempMood = input("Select a mood <>")
+	checkMood = False
 
+	for i, x in enumerate(arrMoods):
+		##if tempMood == i+1:
+			##varMood = x
+			##checkMood = True
+			##return varGenre
+		if tempMood.lower() in [x.lower() for x in arrMoods]:
+			checkMood = True
+			return tempMood
+
+	if checkMood == False:
+		print("Please select a genre")
+		varGenre = Moods()
+
+##Get Genre
+for i, x in enumerate(arrGenres):
+            print(i+1,x)
 varGenre = Genres()
+
+##Get Mood
+for i, x in enumerate(arrMoods):
+            print(i+1,x)
 varMood = Moods()
-print(varGenre + " Selected as genre")
-print(varMood + " Selected as mood")
+
+##Print Genre and mood for testing 
+print(varGenre)
+print(varMood)
+
+##Keep console open
 input()
+
 

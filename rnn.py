@@ -8,10 +8,27 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+import GUI as gui
 
 # Importing the training set
-trainingset.selected = GUI.option();
-dataset_train = pd.read_csv(trainingset.selected)
+#trainingset.selected = GUI.Genres();
+import midi_manipulation
+
+def get_songs(path):
+    files = glob.glob('{}/*.mid*'.format(path))
+    songs = []
+    for f in tqdm(files):
+        try:
+            song = np.array(midi_manipulation.midiToNoteStateMatrix(f))
+            if np.array(song).shape[0] > 50:
+                songs.append(song)
+        except Exception as e:
+            raise e           
+    return songs
+
+songs = get_songs('Pop_Music_Midi') #These songs have already been converted from midi to msgpack
+print ("{} songs processed".format(len(songs)))
+dataset_train = song
 training_set = dataset_train.iloc[:, 1:2].values
 
 # Feature Scaling
