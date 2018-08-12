@@ -8,10 +8,27 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+import GUI as gui
 
 # Importing the training set
-trainingset.selected = GUI.option();
-dataset_train = pd.read_csv(trainingset.selected)
+#trainingset.selected = GUI.Genres();
+import midi_manipulation
+
+def get_songs(path):
+    files = glob.glob('{}/*.mid*'.format(path))
+    songs = []
+    for f in tqdm(files):
+        try:
+            song = np.array(midi_manipulation.midiToNoteStateMatrix(f))
+            if np.array(song).shape[0] > 50:
+                songs.append(song)
+        except Exception as e:
+            raise e           
+    return songs
+
+songs = get_songs('Pop_Music_Midi') #These songs have already been converted from midi to msgpack
+print ("{} songs processed".format(len(songs)))
+dataset_train = song
 training_set = dataset_train.iloc[:, 1:2].values
 
 # Feature Scaling
@@ -98,3 +115,25 @@ plt.xlabel('Time')
 plt.ylabel('Frequency')
 plt.legend()
 plt.show()
+
+#CREATING MIDI FILE OUTPUT
+import midi
+# Instantiate a MIDI Pattern (contains a list of tracks)
+pattern = midi.Pattern()
+# Instantiate a MIDI Track (contains a list of MIDI events)
+track = midi.Track()
+# Append the track to the pattern
+pattern.append(track)
+# Instantiate a MIDI note on event, append it to the track
+on = midi.NoteOnEvent(tick=0, velocity=20, pitch=midi.G_3)
+track.append(on)
+# Instantiate a MIDI note off event, append it to the track
+off = midi.NoteOffEvent(tick=100, pitch=midi.G_3)
+track.append(off)
+# Add the end of track event, append it to the track
+eot = midi.EndOfTrackEvent(tick=1)
+track.append(eot)
+# Print out the pattern
+print pattern
+# Save the pattern to disk
+midi.write_midifile("example.mid", pattern)
