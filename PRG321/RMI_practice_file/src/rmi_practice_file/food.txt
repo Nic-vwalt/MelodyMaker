@@ -1,2 +1,0 @@
-Pizza#Large#R20
-MorePizza#ExtraLarge#R50
