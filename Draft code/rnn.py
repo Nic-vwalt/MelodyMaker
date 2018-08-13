@@ -11,7 +11,7 @@ import pandas as pd
 
 # Importing the training set
 dataset_train = pd.read_csv('goingupthecountry.csv')
-training_set = dataset_train.iloc[[18],[0,1,3,4,5,6]] 
+training_set = dataset_train.iloc[18:,[0,1,3,4,5,6]] 
 
 # Feature Scaling
 from sklearn.preprocessing import MinMaxScaler
