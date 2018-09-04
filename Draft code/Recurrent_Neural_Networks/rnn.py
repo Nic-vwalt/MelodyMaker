@@ -8,29 +8,22 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-from sklearn.preprocessing import Imputer
-
 
 # Importing the training set
 dataset_train = pd.read_csv('goingupthecountry.csv')
-dataset_train.fillna(0)
-training_set = dataset_train.iloc[18:,[0,1,3,4,5,6]] 
+training_set = dataset_train.iloc[:, 1:2].values
 
-imputer = Imputer(missing_values = 'NaN', strategy = 'mean', axis = 0)
-imputer = imputer.fit(training_set.iloc[:, 0:5])
-training_set = imputer.transform(training_set.iloc[:, 0:5])
-                       
 # Feature Scaling
 from sklearn.preprocessing import MinMaxScaler
-sc = MinMaxScaler(feature_range = (0,1))
+sc = MinMaxScaler(feature_range = (0, 1))
 training_set_scaled = sc.fit_transform(training_set)
 
 # Creating a data structure with 60 timesteps and 1 output
 X_train = []
 y_train = []
 for i in range(60, 1258):
-    X_train.append(training_set_scaled[i-60:i, 1])
-    y_train.append(training_set_scaled[i, 1])
+    X_train.append(training_set_scaled[i-60:i, 0])
+    y_train.append(training_set_scaled[i, 0])
 X_train, y_train = np.array(X_train), np.array(y_train)
 
 # Reshaping
@@ -72,15 +65,15 @@ regressor.add(Dense(units = 1))
 regressor.compile(optimizer = 'adam', loss = 'mean_squared_error')
 
 # Fitting the RNN to the Training set
-regressor.fit(X_train, y_train, epochs = 100, batch_size = 32)
+regressor.fit(X_train, y_train, epochs = 50, batch_size = 32)
 
 
 
 # Part 3 - Making the predictions and visualising the results
 
 # Getting the real stock price of 2017
-dataset_test = pd.read_csv('goingupthecountry_train.csv')
-real_notes = dataset_test.iloc[18:,[0,1,3,4,5,6]]
+dataset_test = pd.read_csv('goingupthecountry_test.csv')
+predicted_pitch = dataset_test.iloc[:, 1:2].values
 
 # Getting the predicted stock price of 2017
 dataset_total = pd.concat((dataset_train['Open'], dataset_test['Open']), axis = 0)
@@ -92,14 +85,14 @@ for i in range(60, 80):
     X_test.append(inputs[i-60:i, 0])
 X_test = np.array(X_test)
 X_test = np.reshape(X_test, (X_test.shape[0], X_test.shape[1], 1))
-predicted_stock_price = regressor.predict(X_test)
-predicted_stock_price = sc.inverse_transform(predicted_stock_price)
+predicted_note = regressor.predict(X_test)
+predicted_note = sc.inverse_transform(predicted_note)
 
 # Visualising the results
-plt.plot(real_notes, color = 'red', label = 'Real Google Stock Price')
-plt.plot(predicted_stock_price, color = 'blue', label = 'Predicted Google Stock Price')
-plt.title('Google Stock Price Prediction')
+plt.plot(predicted_pitch, color = 'red', label = 'Training set')
+plt.plot(predicted_note, color = 'blue', label = 'Generated set')
+plt.title('Music Frequency Table')
 plt.xlabel('Time')
-plt.ylabel('Google Stock Price')
+plt.ylabel('Pitch')
 plt.legend()
 plt.show()

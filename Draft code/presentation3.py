@@ -1,11 +1,18 @@
-##genre array with temp values 
-arrGenres = ["Jazz","Blues","Classic","Rock","Metal"]
+import SQLConnection as sql
+
+##Genres
+arrGenres = []
+cur = db.cursor()
+cur.execute("SELECT genreName  FROM tblGenre")
+arrSelected = ""
+for row in cur.fetchall():
+	arrGenres.append(row)
+
 
 ##mood array with temp values
 arrMoods = ["Happy","Sad","Excited","Aggressive","Humorous","None"]
 
 
-  
 
 
 ##Class to get genres
@@ -61,6 +68,13 @@ varMood = Moods()
 ##Print Genre and mood for testing 
 print(varGenre)
 print(varMood)
+
+arrGenreSelected = []
+cur = db.cursor()
+cur.execute("SELECT csvPath FROM tblCSV WHERE GENREID = %s", (tempGenre))
+arrSelected = ""
+for row in cur.fetchall():
+	arrSelected.append(row)
 
 ##Keep console open
 input()
