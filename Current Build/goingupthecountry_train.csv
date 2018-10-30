@@ -1,3 +1,4 @@
+Track,Frequency,Note,Key,Channel,Port
 2,4200, Note_on_c,1,72,88,0
 2,4440, Note_on_c,1,74,88,0
 2,4480, Note_off_c,1,72,64,0

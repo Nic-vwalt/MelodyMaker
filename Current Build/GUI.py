@@ -1,12 +1,6 @@
-#import SQLConnection as sql
+##genre array with temp values 
+arrGenres = ["Jazz","Blues","Classic","Rock","Metal"]
 
-##Genres
-arrGenres = []
-#cur = db.cursor()
-#cur.execute("SELECT genreName  FROM tblGenre")
-arrSelected = ""
-for row in cur.fetchall():
-	arrGenres.append(row)
 
 
 ##mood array with temp values
@@ -17,7 +11,7 @@ arrMoods = ["Happy","Sad","Excited","Aggressive","Humorous","None"]
 
 ##Class to get genres
 def Genres():
-    tempGenre = input("Select Genre/ ")
+    tempGenre = input("Please Select a Genre: ")
     checkGen = False
     if tempGenre.isdigit():
         for i, x in enumerate(arrGenres):
@@ -30,13 +24,14 @@ def Genres():
                  checkGen = True
                  varGenre = x
     if checkGen == False:
-        print("Please select a genre")
+        print("Please Select a genre: ")
         varGenre = Genres()
     else:
         return varGenre
+import datetime
 
 def Moods():
-    tempMood = input("Select a mood/ ")
+    tempMood = input("Please Select a mood: ")
     checkMood = False
     if tempMood.isdigit():
         for i, x in enumerate(arrMoods):
@@ -50,7 +45,7 @@ def Moods():
                 varMood = x
 
     if checkMood == False:
-	    print("Please select a mood")
+	    print("Please select a mood: ")
 	    varMood = Moods()
     else:
         return varMood
@@ -58,23 +53,21 @@ def Moods():
 ##Get Genre
 for i, x in enumerate(arrGenres):
             print(i+1,x)
+            
 varGenre = Genres()
 
 ##Get Mood
 for i, x in enumerate(arrMoods):
             print(i+1,x)
+            
 varMood = Moods()
+
+varDate = datetime.datetime.now()
 
 ##Print Genre and mood for testing 
 print(varGenre)
 print(varMood)
-
-arrGenreSelected = []
-cur = db.cursor()
-cur.execute("SELECT csvPath FROM tblCSV WHERE GENREID = %s", (tempGenre))
-arrSelected = ""
-for row in cur.fetchall():
-	arrSelected.append(row)
+print(varDate)
 
 ##Keep console open
 input()
