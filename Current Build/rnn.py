@@ -9,12 +9,36 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.preprocessing import Imputer
+import midi_manipulation
+import msgpack
+import glob
+import tensorflow as tf
+from tensorflow.python.ops import control_flow_ops
+from tqdm import tqdm 
 
 
 # Importing the training set
-dataset_train = pd.read_csv('goingupthecountry.csv')
-training_set = dataset_train.iloc[18:,0:1].values
+#dataset_train = pd.read_csv('goingupthecountry.csv')
+#training_set = dataset_train.iloc[18:,0:1].values
 
+def get_songs(path):
+    files = glob.glob('{}/*.mid*'.format(path))
+    dataset_train = []
+    for f in tqdm(files):
+        try:
+            song = np.array(midi_manipulation.midiToNoteStateMatrix(f))
+            if np.array(song).shape[0] > 50:
+                dataset_train.append(song)
+        except Exception as e:
+            raise e           
+    return dataset_train
+
+num_timesteps  = 120
+
+dataset_train = get_songs('Rock_Music_Midi')
+training_set = np.array(dataset_train)
+training_set = training_set[:int(np.floor(training_set.shape[0]//num_timesteps)*num_timesteps)]
+training_set = np.reshape(training_set, [training_set.shape[0]//num_timesteps, training_set.shape[1]*num_timesteps])
                        
 # Feature Scaling
 from sklearn.preprocessing import MinMaxScaler
@@ -90,6 +114,8 @@ X_test = np.array(X_test)
 X_test = np.reshape(X_test, (X_test.shape[0], X_test.shape[1], 1))
 predicted_note = regressor.predict(X_test)
 predicted_note = sc.inverse_transform(predicted_note)
+
+midi_manipulation.noteStateMatrixToMidi(predicted_note, "generated_melody_{}".format(i))
 
 # Visualising the results
 plt.plot(real_notes, color = 'red', label = 'Training set')
