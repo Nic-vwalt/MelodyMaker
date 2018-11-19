@@ -1,4 +1,4 @@
-
+import Report as r
 
 ##Class to get menu input
 
@@ -17,7 +17,7 @@ def menu():
         
     elif menuIn == 3:
         ##add report stuff
-        print("Remove this print 3")
+        r.getData();
     elif menuIn == 4:
         quit()
     else:
