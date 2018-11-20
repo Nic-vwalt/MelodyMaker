@@ -1,10 +1,32 @@
+import Report as r
+
+
 ##genre array with temp values 
-arrGenres = ["Jazz","Blues","Classic","Rock","Metal"]
+arrGenres = ["Blues", 
+"Classic", 
+"Dance",
+"Pop", 
+"Punk", 
+"Rap", 
+"Rock", 
+"Jazz",
+"Metal" 
+
+]
 
 
 
 ##mood array with temp values
-arrMoods = ["Happy","Sad","Excited","Aggressive","Humorous","None"]
+arrMoods = ["Sad", 
+"Happy", 
+"Cheerful",
+"Romantic", 
+"Aggressive", 
+"Intense", 
+"Calm", 
+"Excited", 
+"Humorous" 
+]
 
 
   
@@ -63,14 +85,10 @@ for i, x in enumerate(arrMoods):
             
 varMood = Moods()
 
-varDate = datetime.datetime.now()
 
-##Print Genre and mood for testing 
-print(varGenre)
-print(varMood)
-print(varDate)
+#copy the part to the rnn where the mood and genre is called
+r.updateData(varGenre, varMood)
 
-##Keep console open
-input()
+
 
 
