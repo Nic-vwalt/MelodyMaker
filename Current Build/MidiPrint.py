@@ -61,7 +61,7 @@ def gibbs_sample(k):
         #Runs a single gibbs step. The visible values are initialized to xk
         hk = sample(tf.sigmoid(tf.matmul(xk, W) + bh)) #Propagate the visible values to sample the hidden values
         xk = sample(tf.sigmoid(tf.matmul(hk, tf.transpose(W)) + bv)) #Propagate the hidden values to sample the visible values
-        return count, k, xk
+        return count+1, k, xk
 
     #Run gibbs steps for k iterations
     ct = tf.constant(0) #counter
