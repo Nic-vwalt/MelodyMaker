@@ -13,7 +13,7 @@ import midi_manipulation
 import msgpack
 import glob
 import tensorflow as tf
-import getGM as gm
+import GetGM as gm
 import Report as r
 from tensorflow.python.ops import control_flow_ops
 from tqdm import tqdm 
