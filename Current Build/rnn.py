@@ -13,6 +13,8 @@ import midi_manipulation
 import msgpack
 import glob
 import tensorflow as tf
+import getGM as gm
+import Report as r
 from tensorflow.python.ops import control_flow_ops
 from tqdm import tqdm 
 
@@ -20,6 +22,21 @@ from tqdm import tqdm
 # Importing the training set
 #dataset_train = pd.read_csv('goingupthecountry.csv')
 #training_set = dataset_train.iloc[18:,0:1].values
+
+##Get Genre
+
+            
+varGenre = gm.Genres()
+
+##Get Mood
+
+            
+varMood = gm.Moods()
+
+
+#copy the part to the rnn where the mood and genre is called
+r.updateData(varGenre, varMood)
+
 
 def get_songs(path):
     files = glob.glob('{}/*.mid*'.format(path))

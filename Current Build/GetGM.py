@@ -34,6 +34,8 @@ arrMoods = ["Sad",
 
 ##Class to get genres
 def Genres():
+    for i, x in enumerate(arrGenres):
+            print(i+1,x)
     tempGenre = input("Please Select a Genre: ")
     checkGen = False
     if tempGenre.isdigit():
@@ -54,6 +56,8 @@ def Genres():
 import datetime
 
 def Moods():
+    for i, x in enumerate(arrMoods):
+            print(i+1,x)
     tempMood = input("Please Select a mood: ")
     checkMood = False
     if tempMood.isdigit():
@@ -73,21 +77,10 @@ def Moods():
     else:
         return varMood
 
-##Get Genre
-for i, x in enumerate(arrGenres):
-            print(i+1,x)
+
+
             
-varGenre = Genres()
 
-##Get Mood
-for i, x in enumerate(arrMoods):
-            print(i+1,x)
-            
-varMood = Moods()
-
-
-#copy the part to the rnn where the mood and genre is called
-r.updateData(varGenre, varMood)
 
 
 
