@@ -8,6 +8,20 @@ from tqdm import tqdm
 import midi_manipulation
 import matplotlib.pyplot as plt
 
+##Get Genre
+
+            
+varGenre = gm.Genres()
+
+##Get Mood
+
+            
+varMood = gm.Moods()
+
+
+#copy the part to the rnn where the mood and genre is called
+r.updateData(varGenre, varMood)
+
 def get_songs(path):
     files = glob.glob('{}/*.mid*'.format(path))
     songs = []

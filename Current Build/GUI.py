@@ -11,7 +11,7 @@ def menu():
     
     menuIn = int(input(""))
     if menuIn == 1:
-        import rnn
+        import MidiPrint
     elif menuIn == 2:
         import helpPage
         
