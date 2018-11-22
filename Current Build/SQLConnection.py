@@ -4,30 +4,26 @@ def Connect():
 db = MySQLdb.connect(host="localhost",    
                      user="root",         
                      passwd="",  
-                     db="MelodyMakerDB")        �����������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������������import MySQLdb
+                     db="melodymakerdb")        
 
-a=db.cursor()
+cursor = connect.cursor()
 
-sql='SELECT * from `tblcsv`;'
-a.execute(sql)
+#user will input mood in order to search
+mood=""
+genre=""
 
-countrow=a.execute(sql)
-print("Number of rows: ",countrow)
-data=a.fetchall()
-print(data)
+sql = "SELECT * FROM tblCSV 
+inner join mood
+on tblCSV.moodID=mood.moodID"
+inner join tblgenre
+on tblCSV.genreID=tblgenre.genreID"
 
-sql='SELECT * from `tblgenre`;'
-a.execute(sql)
 
-countrow=a.execute(sql)
-print("Number of rows: ",countrow)
-data=a.fetchall()
-print(data)
 
-sql='SELECT * from `tblmood`;'
-a.execute(sql)
+cursor.execute(sql)
 
-countrow=a.execute(sql)
-print("Number of rows: ",countrow)
-data=a.fetchall()
-print(data)
+results = cursor.fetchall()
+for row in results:
+filePath = row[0]
+
+connection.close()
