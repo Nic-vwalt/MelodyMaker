@@ -6,6 +6,7 @@ import tensorflow as tf
 from tensorflow.python.ops import control_flow_ops
 from tqdm import tqdm 
 import midi_manipulation
+import matplotlib.pyplot as plt
 
 def get_songs(path):
     files = glob.glob('{}/*.mid*'.format(path))
