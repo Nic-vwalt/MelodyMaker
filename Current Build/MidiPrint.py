@@ -7,6 +7,8 @@ from tensorflow.python.ops import control_flow_ops
 from tqdm import tqdm 
 import midi_manipulation
 import matplotlib.pyplot as plt
+import GetGM as gm
+import Report as r
 
 ##Get Genre
 
