@@ -14,7 +14,7 @@ genre=""
 
 sql = "SELECT * FROM tblCSV 
 inner join mood
-on tblCSV.moodID=mood.moodID"
+on tblCSV.moodID=mood.moodID
 inner join tblgenre
 on tblCSV.genreID=tblgenre.genreID"
 
